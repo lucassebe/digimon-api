@@ -1,17 +1,16 @@
 package com.example.digimonapi.controller;
 
 import com.example.digimonapi.service.TamerService;
-import com.example.digimonapi.tamer.TamerNewResponseDTO;
-import com.example.digimonapi.tamer.TamerRepository;
-import com.example.digimonapi.tamer.TamerRequestDTO;
-import com.example.digimonapi.tamer.TamerResponseDTO;
+import com.example.digimonapi.tamer.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +23,9 @@ public class TamerController {
     private TamerService service;
 
     @GetMapping()
-    public ResponseEntity<Object> getAll(){
-        List<TamerResponseDTO> tamersList = repository.findAll().stream()
+    public ResponseEntity<Object> getAll(Pageable pageable){
+        Page<Tamer> tamersPage = repository.findAllByOrderByIdAsc(pageable);
+        List<TamerResponseDTO> tamersList = tamersPage.getContent().stream()
                 .map(TamerResponseDTO::new)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(tamersList, HttpStatus.OK);
