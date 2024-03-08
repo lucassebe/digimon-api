@@ -1,5 +1,6 @@
 package com.example.digimonapi.tamer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,8 +16,8 @@ public class Tamer {
         private Long id;
         private String tamer;
         private Integer age;
-        private String digimon_partner;
-        private String digimon_series;
-
-
+        @JsonProperty("digimon_partner")
+        private String digimonPartner;
+        @JsonProperty("digimon_series")
+        private String digimonSeries;
 }

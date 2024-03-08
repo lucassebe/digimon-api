@@ -56,8 +56,6 @@ public class DigimonController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<Object>  deleteDigimon(@PathVariable String name) {
         try {

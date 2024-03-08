@@ -1,15 +1,16 @@
 package com.example.digimonapi.controller;
 
 import com.example.digimonapi.service.TamerService;
+import com.example.digimonapi.tamer.TamerNewResponseDTO;
 import com.example.digimonapi.tamer.TamerRepository;
+import com.example.digimonapi.tamer.TamerRequestDTO;
 import com.example.digimonapi.tamer.TamerResponseDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +37,22 @@ public class TamerController {
                 .collect(Collectors.toList());
         return new ResponseEntity<>(tamersList, HttpStatus.OK);
 
+    }
+    @PostMapping("/insert")
+    public ResponseEntity<Object> insertTamer(@RequestBody TamerRequestDTO tamerRequest){
+            TamerNewResponseDTO tamerNewResponseDTO = service.insertTamer(tamerRequest.tamer(), tamerRequest);
+            return new ResponseEntity<>(tamerNewResponseDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateTamer(@PathVariable Long id, @RequestBody TamerRequestDTO tamerRequest){
+        try {
+            TamerNewResponseDTO tamerNewResponseDTO = service.updateTamer(id, tamerRequest);
+            return new ResponseEntity<>(tamerNewResponseDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
