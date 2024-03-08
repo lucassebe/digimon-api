@@ -46,6 +46,7 @@ Before running this application, ensure you have the following prerequisites ins
   mvn clean install
   ```
 4. Configure the PostgreSQL database connection in `application.properties`.
+
 5. Run the application:
   ```
   java -jar target/digimon-api-service.jar
