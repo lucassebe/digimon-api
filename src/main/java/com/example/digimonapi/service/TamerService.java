@@ -1,5 +1,6 @@
-package com.example.digimonapi.tamer;
+package com.example.digimonapi.service;
 
+import com.example.digimonapi.tamer.TamerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

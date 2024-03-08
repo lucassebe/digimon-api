@@ -1,7 +1,7 @@
 package com.example.digimonapi.controller;
 
 import com.example.digimonapi.digimon.*;
-import org.apache.coyote.Response;
+import com.example.digimonapi.service.DigimonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("digimon")
+@RequestMapping("/api/digimon")
 public class DigimonController {
     @Autowired
     private DigimonRepository repository;
+
     @Autowired
     private DigimonService service;
 
@@ -57,7 +58,7 @@ public class DigimonController {
     }
 
 
-    @DeleteMapping("/insert/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<Object>  deleteDigimon(@PathVariable String name) {
         try {
             service.deleteDigimonByName(name);

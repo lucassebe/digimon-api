@@ -1,9 +1,8 @@
 package com.example.digimonapi.controller;
 
-import com.example.digimonapi.digimon.DigimonResponseDTO;
+import com.example.digimonapi.service.TamerService;
 import com.example.digimonapi.tamer.TamerRepository;
 import com.example.digimonapi.tamer.TamerResponseDTO;
-import com.example.digimonapi.tamer.TamerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("tamer")
+@RequestMapping("/api/tamer")
 public class TamerController {
     @Autowired
     private TamerRepository repository;

@@ -1,5 +1,9 @@
-package com.example.digimonapi.digimon;
+package com.example.digimonapi.service;
 
+import com.example.digimonapi.digimon.Digimon;
+import com.example.digimonapi.digimon.DigimonRepository;
+import com.example.digimonapi.digimon.DigimonRequestDTO;
+import com.example.digimonapi.digimon.DigimonResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +11,7 @@ import java.util.List;
 
 @Service
 public class DigimonService {
+
     @Autowired
     private DigimonRepository repository;
     public Digimon createDigimonFromRequest(DigimonRequestDTO digimonRequest){
